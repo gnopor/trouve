@@ -1,14 +1,11 @@
 <template>
   <div>
-    <Navbar />
     <Nuxt />
   </div>
 </template>
-
 <script>
-import Navbar from "@/components/Header/Navbar";
 export default {};
 </script>
 
-<style>
+<style scoped>
 </style>

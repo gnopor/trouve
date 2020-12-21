@@ -20,8 +20,7 @@ export default {
   },
 
   // Global CSS (https://go.nuxtjs.dev/config-css)
-  css: [],
-
+  css: ["@/assets/css/global.css"],
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [],
 
@@ -35,10 +34,7 @@ export default {
   ],
 
   // Modules (https://go.nuxtjs.dev/config-modules)
-  modules: [
-    // https://go.nuxtjs.dev/axios
-    "@nuxtjs/axios",
-  ],
+  modules: ["@nuxtjs/axios", "@nuxtjs/auth"],
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
   axios: {
@@ -47,4 +43,52 @@ export default {
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {},
+  // auth configuration
+  auth: {
+    // Options
+    redirect: {
+      login: "/login",
+      // logout: '/',
+      // callback: '/login',
+      callback: false,
+      home: false,
+      // home: '/middleware',
+    },
+    strategies: {
+      local: {
+        scheme: "refresh",
+        token: {
+          property: "access_token",
+          maxAge: 60 * 15,
+          // type: 'Bearer'
+        },
+        refreshToken: {
+          property: "refresh_token",
+          // data: "refresh_token",
+          maxAge: 60 * 60 * 24 * 7,
+        },
+
+        endpoints: {
+          login: {
+            url: `${BASE_URL}/auth/login`,
+            method: "post",
+            propertyName: "access_token",
+          },
+          refresh: {
+            url: `${BASE_URL}/auth/refresh_token`,
+            method: "post",
+          },
+          user: {
+            url: `${BASE_URL}/auth/user`,
+            method: "get",
+          },
+          logout: { url: `${BASE_URL}/auth/logout`, method: "get" },
+        },
+        // autoLogout: false
+      },
+    },
+  },
+  router: {
+    middleware: ["auth"],
+  },
 };

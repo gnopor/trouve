@@ -1,0 +1,8 @@
+:root {
+  --midtone: gray;
+  --accent: blue;
+}
+* {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
