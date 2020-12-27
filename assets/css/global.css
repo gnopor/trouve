@@ -1,8 +1,18 @@
 :root {
-  --midtone: gray;
-  --accent: blue;
+  --base: #ffc72f;
+  --accent: #fea12f;
+  --white: #fff;
+  --dark_gray: #28231f;
+  --light_gray: #fffced;
+  --medium_button: 60px;
+  --default_text: 16px;
+  --small_text: 13px;
+  --subtitle: 25px;
+  --header: 30px;
 }
 * {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
+  font-size: var(--default_text);
+  color: var(--dark_gray);
 }

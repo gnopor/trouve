@@ -1,5 +1,6 @@
 <template>
   <div class="login">
+    <Logo />
     <div>
       i want to
       <button @click="isLoginForm = !isLoginForm">
@@ -21,8 +22,10 @@
 </template>
 
 <script>
+import Logo from "@/components/Logo";
 export default {
   layout: "login",
+  components: { Logo },
   data: () => ({
     email: "mayoublaise@gmail.com",
     password: "test",
