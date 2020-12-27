@@ -1,15 +1,15 @@
 <template>
   <div class="navbar">
-    <div class="profil">
-      <img src="/images/profil.png" alt="tayou blaise" />
+    <div class="logo">
+      <Logo />
     </div>
 
     <div class="menu">
-      <nuxt-link v-for="(link, index) in links" :key="index" :to="link.path">
+      <a v-for="(link, index) in links" :key="index" :href="link.path">
         <div>
           <span>{{ link.title }}</span>
         </div>
-      </nuxt-link>
+      </a>
     </div>
 
     <!-- trigger to show sidebar -->
@@ -23,21 +23,22 @@
 
 <script>
 import Menu from "mdi-vue/Menu.vue";
+import Logo from "@/components/Logo";
 import Sidebar from "@/components/Header/Sidebar";
 
 export default {
   components: {
     Sidebar,
     Menu,
+    Logo,
   },
   data() {
     return {
       showSideBar: false,
       links: [
         { title: "home", path: "#", icon: "" },
-        { title: "about", path: "#about", icon: "" },
-        { title: "portfolio", path: "#portfolio", icon: "" },
-        { title: "contact", path: "#contact", icon: "" },
+        { title: "logout", path: "#", icon: "" },
+        { title: "contact", path: "https://tayoublaise.tk", icon: "" },
       ],
     };
   },
@@ -47,25 +48,14 @@ export default {
 <style scoped>
 /* navbar */
 .navbar {
-  background: var(--midtone);
+  background: var(--base);
+  color: var(--dark_gray);
   display: flex;
   align-items: center;
   justify-content: space-between;
   max-width: 100vw;
   height: 60px;
   padding: 0 50px 0 10px;
-}
-
-/* profile  */
-.profil img {
-  height: 70px;
-  border-radius: 50%;
-}
-
-.profil:hover img {
-  position: absolute;
-  top: 200px;
-  height: 400px;
 }
 
 /* menu */
@@ -83,27 +73,30 @@ export default {
   align-items: center;
   height: 100%;
   padding: 0 20px;
-  color: white;
   text-align: center;
   font-weight: bold;
   cursor: pointer;
+}
+
+.menu div span {
+  color: white;
 }
 .menu div:hover {
   border-bottom: 4px solid var(--accent);
 }
 
-.menu div:active {
+.menu div:active span {
   color: var(--accent);
 }
 
 /* trigger  */
-.navbar .trigger {
+.trigger {
   display: none;
 }
 
 /* for tablet and smartphone */
 @media screen and (max-width: 768px) {
-  .navbar .trigger {
+  .trigger {
     display: initial;
     color: white;
     cursor: pointer;

@@ -1,31 +1,37 @@
 <template>
   <div class="login">
-    <Logo />
-    <div>
-      i want to
-      <button @click="isLoginForm = !isLoginForm">
-        {{ isLoginForm ? "login" : "register" }}
-      </button>
+    <div class="logo">
+      <img src="/logo.png" alt="tayou blaise" />
     </div>
-    <input v-model="email" type="text" placeholder="email" />
-    <input v-model="password" type="text" placeholder="password" />
-    <input
-      v-if="!isLoginForm"
-      v-model="password2"
-      type="text"
-      placeholder="Confirm password"
-    />
+    <!-- form  -->
+    <div class="form">
+      <input v-model="email" type="text" placeholder="email" />
+      <input v-model="password" type="password" placeholder="password" />
+      <input
+        v-if="!isLoginForm"
+        v-model="password2"
+        type="password"
+        placeholder="Confirm password"
+      />
 
-    <button v-if="isLoginForm" @click="login">login</button>
-    <button v-else @click="register">register</button>
+      <button v-if="isLoginForm" @click="login">login</button>
+      <button v-else @click="register">register</button>
+    </div>
+
+    <!-- swith login register  -->
+    <div class="switch">
+      I want to &MediumSpace;
+      <span @click="isLoginForm = !isLoginForm">
+        {{ isLoginForm ? "login" : "register" }}
+      </span>
+      .
+    </div>
   </div>
 </template>
 
 <script>
-import Logo from "@/components/Logo";
 export default {
   layout: "login",
-  components: { Logo },
   data: () => ({
     email: "mayoublaise@gmail.com",
     password: "test",
@@ -38,7 +44,7 @@ export default {
       console.log(login);
       try {
         await this.$auth.loginWith("local", { data: login }).then((res) => {
-          console.log(data);
+          // console.log(data);
           this.$auth.setUserToken(
             res.data.access_token,
             res.data.refresh_token
@@ -59,7 +65,53 @@ export default {
 .login {
   display: flex;
   flex-direction: column;
-  margin: auto;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
   max-width: 300px;
+  margin: auto;
+}
+
+/* logo  */
+.logo {
+  margin: 30px;
+}
+
+/* form  */
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form > * {
+  margin: 10px 0;
+}
+
+.form button {
+  background: var(--accent);
+  color: white;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  height: var(--medium_button);
+}
+
+.form input {
+  /* background: var(--light_gray); */
+  border: 1px solid var(--dark_gray);
+  padding: 5px;
+}
+
+/* .switch */
+.switch {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.switch span {
+  color: var(--accent);
+  font-weight: bold;
+  cursor: pointer;
 }
 </style>

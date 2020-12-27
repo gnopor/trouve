@@ -1,7 +1,7 @@
 <template>
   <div class="side-bar">
     <div class="top">
-      <img src="/images/profil.png" alt="tayou blaise" />
+      <Logo />
 
       <span class="trigger" @click="hideSideNav"> <Close /> </span>
     </div>
@@ -19,6 +19,7 @@
 
 <script>
 import Close from "mdi-vue/Close.vue";
+import Logo from "@/components/Logo";
 
 export default {
   props: {
@@ -29,6 +30,7 @@ export default {
   },
   components: {
     Close,
+    Logo,
   },
   methods: {
     hideSideNav() {
@@ -44,7 +46,7 @@ export default {
   position: absolute;
   top: 0;
   left: 0;
-  background: var(--midtone);
+  background: var(--base);
   height: 100vh;
   width: 100vw;
 }
@@ -54,18 +56,13 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 30px;
-  color: white;
+  padding: 20px;
 }
 
 /* .top .logo  */
 
-.top img {
-  height: 70px;
-  border-radius: 50%;
-}
-
-.top .trigger {
+.top .trigger span svg {
+  color: white;
   cursor: pointer;
 }
 
