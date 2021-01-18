@@ -49,6 +49,7 @@ export default {
   background: var(--base);
   height: 100vh;
   width: 100vw;
+  z-index: 10;
 }
 
 /* .top logo and close button */

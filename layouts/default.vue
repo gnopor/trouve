@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="app">
     <Navbar />
     <Nuxt />
   </div>
@@ -7,12 +7,14 @@
 
 <script>
 import Navbar from "@/components/Header/Navbar";
-import mixin from "@/static/mixins/default.js";
 
-export default {
-  mixins: [mixin],
-};
+export default {};
 </script>
 
 <style>
+.app {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
 </style>

@@ -125,7 +125,7 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
+  height: 100vh;
 }
 
 /* .container  */
@@ -218,5 +218,34 @@ input {
   color: var(--light_gray);
   border: none;
   font-weight: bold;
+}
+
+/* for tablet and smartphone */
+@media screen and (max-width: 768px) {
+  /* .container  */
+  .container {
+    padding: 90px 40px;
+  }
+
+  .container::after {
+    top: -30px;
+    right: -30px;
+  }
+
+  /* .names  */
+  .container .names {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+  /* .numbers  */
+  .container .numbers {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+  }
 }
 </style>
