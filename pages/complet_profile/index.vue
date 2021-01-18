@@ -3,7 +3,7 @@
     <div class="container">
       <!-- names  -->
       <div class="names">
-        <input v-model="fistName" type="text" placeholder="Nom" />
+        <input v-model="firstName" type="text" placeholder="Nom" />
         <input v-model="lastName" type="text" placeholder="Prenom" />
       </div>
 
@@ -15,15 +15,20 @@
 
       <!-- avatar  -->
       <div class="avatar">
-        <input type="file" name="" />
-        <button>Avatar</button>
-        <img v-if="avatar" src="" alt="avatar" class="preview" />
+        <input
+          type="file"
+          accept="images/*"
+          ref="file_input"
+          @change="newImage"
+        />
+        <button @click="addFile">Avatar</button>
+        <div v-if="avatar" ref="preview" class="preview"></div>
       </div>
 
       <!-- controle -->
       <div class="controle">
-        <button>Annuler</button>
-        <button>Continuer</button>
+        <button @click="onAction('clear')">Annuler</button>
+        <button @click="onAction('send')">Continuer</button>
       </div>
     </div>
   </div>
@@ -39,6 +44,30 @@ export default {
       number2: "",
       avatar: "",
     };
+  },
+  methods: {
+    addFile() {
+      this.$refs.file_input.click();
+    },
+    newImage(event) {
+      const file = event.target.files[0];
+      this.avatar = file;
+
+      const img = document.createElement("img");
+      img.title = "Photo de profil";
+      img.height = "100";
+
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = (event) => {
+        img.src = event.target.result;
+        const content = this.$refs.preview;
+
+        if (content.firstChild) content.firstChild.remove();
+        content.appendChild(img);
+      };
+    },
+    onAction(action) {},
   },
 };
 </script>
@@ -76,8 +105,8 @@ export default {
 .container::after {
   content: "";
   position: absolute;
-  top: -20px;
-  right: -20px;
+  top: -50px;
+  right: -50px;
   width: 30px;
   height: 30px;
   border: 3px solid var(--base);
@@ -102,6 +131,7 @@ input {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  padding: 10px;
   height: 100px;
   width: 100%;
 }
@@ -113,6 +143,11 @@ input {
 .avatar button {
   color: var(--dark-gray);
   background: transparent;
+}
+
+.avatar .preview {
+  max-width: 100px;
+  max-height: 100px;
 }
 
 /* .controle  */
