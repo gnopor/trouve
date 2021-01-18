@@ -21,23 +21,25 @@
           ref="file_input"
           @change="newImage"
         />
-        <button @click="addFile">Avatar</button>
+        <Button @click="addFile">Avatar</Button>
         <div v-if="avatar" ref="preview" class="preview"></div>
       </div>
 
       <!-- controle -->
       <div class="controle">
-        <button @click="onAction('clear')">Annuler</button>
-        <button @click="onAction('send')">Continuer</button>
+        <Button secondary @click="onAction('clear')">Annuler</Button secondary>
+        <Button primary @click="onAction('send')">Continuer</Button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import Button from "@/components/UI/Button.vue";
 import mixin from "@/static/mixins/default.js";
 export default {
   mixins: [mixin],
+  components: { Button },
   data() {
     return {
       firstName: "",
@@ -165,6 +167,7 @@ export default {
   border-radius: 0;
   padding: 10px;
   cursor: pointer;
+  width: 100px;
 }
 
 /* input  */
@@ -188,11 +191,6 @@ input {
   display: none;
 }
 
-.avatar button {
-  color: var(--dark-gray);
-  background: transparent;
-}
-
 .avatar .preview {
   max-width: 100px;
   max-height: 100px;
@@ -200,31 +198,18 @@ input {
 
 /* .controle  */
 .controle {
-}
-
-.controle button {
-  width: 100px;
-}
-
-.controle button:nth-child(1) {
-  background: transparent;
-  border: 1px solid var(--accent);
-  color: var(--accent);
-}
-
-.controle button:nth-child(2) {
-  background: var(--accent);
-
-  color: var(--light_gray);
-  border: none;
-  font-weight: bold;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
 }
 
 /* for tablet and smartphone */
 @media screen and (max-width: 768px) {
   /* .container  */
   .container {
-    padding: 90px 40px;
+    width: 250px;
+    padding: 90px 20px;
   }
 
   .container::after {
