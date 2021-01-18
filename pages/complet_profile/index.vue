@@ -35,7 +35,9 @@
 </template>
 
 <script>
+import mixin from "@/static/mixins/default.js";
 export default {
+  mixins: [mixin],
   data() {
     return {
       firstName: "",
@@ -67,7 +69,52 @@ export default {
         content.appendChild(img);
       };
     },
-    onAction(action) {},
+    onAction(action) {
+      this.loading = true;
+
+      if (action === "clear") {
+        this.firstName = "";
+        this.lastName = "";
+        this.number1 = "";
+        this.number2 = "";
+        this.avatar = "";
+      } else if (this.formValidation()) {
+        const data = {
+          firstName: this.firstName,
+          lastName: this.lastName,
+          number1: this.number1,
+          number2: this.number2,
+          avatar: this.avatar,
+        };
+        this.$axios
+          .post(`${process.env.baseUrl}/auth`, data)
+          .then((res) => {
+            console.log(res.data);
+
+            this.message = "Operation reussie";
+            this.loading = false;
+          })
+          .catch((err) => {
+            console.log(`[Error] ${err}`);
+            this.error = "Probleme survenu pendant le traitement de la requete";
+            this.loading = false;
+          });
+      } else {
+        this.error = "Tout les champs sont obligatoires ...";
+        this.loading = false;
+      }
+
+      this.loading = false;
+    },
+    formValidation() {
+      return (
+        this.firstName &&
+        this.lastName &&
+        this.number1 &&
+        this.number2 &&
+        this.avatar
+      );
+    },
   },
 };
 </script>
@@ -88,6 +135,7 @@ export default {
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
+  padding: 60px 40px;
   height: 200px;
   background: var(--light_gray);
 }
