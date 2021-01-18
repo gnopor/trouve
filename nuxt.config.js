@@ -19,7 +19,7 @@ export default {
   },
 
   css: ["@/assets/css/global.css"],
-  plugins: [],
+  plugins: ["@/plugins/helpers.js"],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
   components: true,
@@ -49,7 +49,7 @@ export default {
       // callback: '/login',
       callback: false,
       // home: false
-      home: "/"
+      home: "/middleware"
     },
     strategies: {
       local: {
@@ -76,8 +76,9 @@ export default {
             method: "post"
           },
           user: {
-            url: `${BASE_URL}/auth/user`,
-            method: "get"
+            url: `${BASE_URL}/auth/emptyuser`,
+            method: "get",
+            propertyName: false
           },
           logout: { url: `${BASE_URL}/auth/logout`, method: "get" }
         }
@@ -86,6 +87,6 @@ export default {
     }
   },
   router: {
-    middleware: ["auth"]
+    // middleware: ["auth"]
   }
 };

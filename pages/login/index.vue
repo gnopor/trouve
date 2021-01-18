@@ -44,13 +44,20 @@ export default {
       console.log(login);
       try {
         await this.$auth.loginWith("local", { data: login }).then((res) => {
-          // console.log(data);
           this.$auth.setUserToken(
             res.data.access_token,
             res.data.refresh_token
           );
-          // TODO: fetch user profile from the appropriate app
-          // this.$auth.setUser(user)
+          // Fetch user profile from the appropriate app
+          this.$axios
+            .get(`${process.env.baseUrl}/auth/user`)
+            .then((res) => {
+              // this.$auth.setUser(user)
+              console.log(res.data);
+            })
+            .catch((err) => {
+              console.log("[User Fetching Error] ", err);
+            });
         });
       } catch (err) {
         console.log(err);
