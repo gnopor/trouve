@@ -51,7 +51,7 @@ export default {
       login: "/login",
       // logout: '/',
       // callback: '/login',
-      callback: false,
+      callback: "/middleware",
       // home: false
       home: "/middleware"
     },
@@ -91,6 +91,6 @@ export default {
     }
   },
   router: {
-    // middleware: ["auth"]
+    middleware: ["auth"]
   }
 };
