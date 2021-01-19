@@ -41,7 +41,6 @@ export default {
   methods: {
     async login() {
       const login = { email: this.email, password: this.password };
-      console.log(login);
       try {
         await this.$auth.loginWith("local", { data: login }).then((res) => {
           this.$auth.setUserToken(
@@ -53,7 +52,7 @@ export default {
             .get(`${process.env.baseUrl}/auth/user`)
             .then((res) => {
               // this.$auth.setUser(user)
-              console.log(res.data);
+              // console.log(res.data);
             })
             .catch((err) => {
               console.log("[User Fetching Error] ", err);

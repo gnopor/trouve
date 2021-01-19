@@ -89,7 +89,7 @@ export default {
           avatar: this.avatar,
         };
         this.$axios
-          .post(`${process.env.baseUrl}/auth`, data)
+          .post(`${process.env.baseUrl}/auth/update_profile`, data)
           .then((res) => {
             console.log(res.data);
 
