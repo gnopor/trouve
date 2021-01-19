@@ -27,7 +27,7 @@
 
       <!-- controle -->
       <div class="controle">
-        <Button secondary @click="onAction('clear')">Annuler</Button secondary>
+        <Button secondary @click="onAction('clear')">Annuler</Button>
         <Button primary @click="onAction('send')">Continuer</Button>
       </div>
     </div>

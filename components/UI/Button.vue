@@ -1,6 +1,8 @@
 <template>
   <div>
-    <button :class="style"><slot></slot></button>
+    <button v-bind="$attrs" :class="style" v-on="listeners">
+      <slot></slot>
+    </button>
   </div>
 </template>
 
@@ -18,6 +20,15 @@ export default {
     },
   },
   computed: {
+    listeners() {
+      return {
+        ...this.$listeners,
+        click: (event) => this.clickButton(event),
+        // blur: (event) => this.blurButton(event),
+        // mouseover: (event) => this.mouseoverx(event),
+        // mouseout: (event) => this.mouseoutx(event),
+      };
+    },
     style() {
       if (this.primary) {
         return "primary";
@@ -26,6 +37,11 @@ export default {
       } else {
         return "light";
       }
+    },
+  },
+  methods: {
+    clickButton(event) {
+      this.$emit("click", event);
     },
   },
 };
