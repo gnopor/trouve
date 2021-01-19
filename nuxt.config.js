@@ -9,7 +9,7 @@ export default {
     backen_app: BACKEND_APP
   },
   head: {
-    title: "trouve",
+    title: "Trouve",
     meta: [
       { charset: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },

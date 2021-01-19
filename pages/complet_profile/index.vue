@@ -81,15 +81,15 @@ export default {
         this.number2 = "";
         this.avatar = "";
       } else if (this.formValidation()) {
-        const data = {
-          firstName: this.firstName,
-          lastName: this.lastName,
-          number1: this.number1,
-          number2: this.number2,
-          avatar: this.avatar,
-        };
+        const formData = new FormData();
+        formData.append("firstName", this.firstName);
+        formData.append("lastName", this.lastName);
+        formData.append("number", this.number1);
+        formData.append("number2", this.number2);
+        formData.append(this.avatar.name, this.avatar);
+
         this.$axios
-          .post(`${process.env.baseUrl}/auth/update_profile`, data)
+          .post(`${process.env.baseUrl}/auth/update_profile`, formData)
           .then((res) => {
             console.log(res.data);
 
