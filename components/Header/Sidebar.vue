@@ -14,7 +14,7 @@
       </div>
       <!-- links -->
       <div v-for="(link, index) in links" :key="index">
-        <a :href="link.path" target="_blank">
+        <a :href="link.path">
           {{ link.title }}
         </a>
       </div>

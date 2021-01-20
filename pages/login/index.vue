@@ -3,6 +3,7 @@
     <div class="logo">
       <img src="/logo.png" alt="tayou blaise" />
     </div>
+
     <!-- form  -->
     <div class="form">
       <input v-model="email" type="text" placeholder="email" />
@@ -14,8 +15,8 @@
         placeholder="Confirm password"
       />
 
-      <button v-if="isLoginForm" @click="login">login</button>
-      <button v-else @click="register">register</button>
+      <Button primary v-if="isLoginForm" @click="login">login</Button>
+      <Button primary v-else @click="register">register</Button>
     </div>
 
     <!-- swith login register  -->
@@ -30,8 +31,10 @@
 </template>
 
 <script>
+import Button from "@/components/UI/Button";
 export default {
   layout: "login",
+  components: { Button },
   data: () => ({
     email: "mayoublaise@gmail.com",
     password: "test",
@@ -103,19 +106,11 @@ export default {
   margin: 10px 0;
 }
 
-.form button {
-  background: var(--accent);
-  color: white;
-  font-weight: bold;
-  border: none;
-  cursor: pointer;
-  height: var(--medium_button);
-}
-
 .form input {
-  /* background: var(--light_gray); */
   border: 1px solid var(--dark_gray);
   padding: 5px;
+  height: 2em;
+  width: 100%;
 }
 
 /* .switch */

@@ -43,7 +43,7 @@ export default {
       showSideBar: false,
       links: [
         { title: "home", path: "#", icon: "" },
-        { title: "logout", path: "#", icon: "" },
+        { title: "logout", path: "/logout", icon: "" },
         { title: "contact", path: "https://tayoublaise.tk", icon: "" },
       ],
       avatar: "",

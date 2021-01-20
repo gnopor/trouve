@@ -165,16 +165,8 @@ export default {
   border-width: 20px 20px 0 0;
 }
 
-.container button {
-  border-radius: 0;
-  padding: 10px;
-  cursor: pointer;
-  width: 100px;
-}
-
 /* input  */
 input {
-  position: relative;
   margin: 5px;
   height: 2em;
 }
