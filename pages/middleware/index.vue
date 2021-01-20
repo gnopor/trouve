@@ -13,7 +13,7 @@ export default {
   async mounted() {
     this.loading = true;
     const PROFILE_NAME = "app_profile";
-    let profile = this.$__getCookie(PROFILE_NAME);
+    let profile = this.$__getCookie(this, PROFILE_NAME);
 
     if (!profile) {
       // we don't use post here because nuxt auth will automaticaly send
@@ -22,18 +22,22 @@ export default {
         .get(`${process.env.baseUrl}/auth/user`)
         .then((res) => {
           profile = res.data;
+          const completed = this.isProfileCompleted(profile);
+          completed && this.$__setCookie(this, PROFILE_NAME, profile);
+          this.$router.push("/");
+
           this.loading = false;
         })
         .catch((err) => {
           console.log(err);
           this.loading = false;
         });
-    }
+    } else {
+      const completed = await this.isProfileCompleted(profile);
+      this.$router.push("/");
 
-    // console.log(profile);
-    const completed = await this.isProfileCompleted(profile);
-    completed && this.$$__setCookie(PROFILE_NAME, profile);
-    this.loading = false;
+      this.loading = false;
+    }
   },
   methods: {
     isProfileCompleted(profile) {

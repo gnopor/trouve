@@ -22,7 +22,7 @@
     <div class="switch">
       I want to &MediumSpace;
       <span @click="isLoginForm = !isLoginForm">
-        {{ isLoginForm ? "login" : "register" }}
+        {{ isLoginForm ? "Register" : "Login" }}
       </span>
       .
     </div>
@@ -35,14 +35,14 @@ export default {
   data: () => ({
     email: "mayoublaise@gmail.com",
     password: "test",
-    password2: "",
+    password2: "test",
     isLoginForm: true,
   }),
   methods: {
     async login() {
-      const login = { email: this.email, password: this.password };
+      const data = { email: this.email, password: this.password };
       try {
-        await this.$auth.loginWith("local", { data: login }).then((res) => {
+        await this.$auth.loginWith("local", { data }).then((res) => {
           this.$auth.setUserToken(
             res.data.access_token,
             res.data.refresh_token
@@ -62,7 +62,17 @@ export default {
         console.log(err);
       }
     },
-    register() {},
+    async register() {
+      const data = { email: this.email, password: this.password };
+      await this.$axios
+        .post(`${process.env.baseUrl}/auth/register`, data)
+        .then((res) => {
+          console.log(res.data);
+        })
+        .catch((err) => {
+          console.log("[Error] ", err);
+        });
+    },
   },
 };
 </script>

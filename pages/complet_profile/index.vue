@@ -91,7 +91,9 @@ export default {
         this.$axios
           .post(`${process.env.baseUrl}/auth/update_profile`, formData)
           .then((res) => {
-            console.log(res.data);
+            const PROFILE_NAME = "app_profile";
+            let profile = this.$__setCookie(this, PROFILE_NAME, res.data);
+            console.log(profile);
 
             this.message = "Operation reussie";
             this.loading = false;
