@@ -8,6 +8,11 @@
 
     <!-- menu  -->
     <div class="menu">
+      <!-- avatar  -->
+      <div v-if="avatar" class="avatar">
+        <Avatar :url="profile_url" />
+      </div>
+      <!-- links -->
       <div v-for="(link, index) in links" :key="index">
         <a :href="link.path" target="_blank">
           {{ link.title }}
@@ -20,6 +25,7 @@
 <script>
 import Close from "mdi-vue/Close.vue";
 import Logo from "@/components/Logo";
+import Avatar from "@/components/UI/Avatar";
 
 export default {
   props: {
@@ -31,10 +37,26 @@ export default {
   components: {
     Close,
     Logo,
+    Avatar,
+  },
+  data() {
+    return {
+      avatar: "",
+    };
+  },
+  mounted() {
+    const PROFILE_NAME = "app_profile";
+    let profile = this.$__getCookie(this, PROFILE_NAME);
+    if (profile && profile.avatar) this.avatar = profile.avatar;
   },
   methods: {
     hideSideNav() {
       this.$emit("onHide", true);
+    },
+  },
+  computed: {
+    profile_url() {
+      return `${process.env.baseUrl}/auth/static/${this.avatar}`;
     },
   },
 };
@@ -84,5 +106,10 @@ export default {
   color: white;
   cursor: pointer;
   padding: 20px 0;
+}
+
+/* .avatar */
+.avatar {
+  margin: auto;
 }
 </style>
