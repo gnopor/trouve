@@ -29,7 +29,7 @@ export default {
 
 .filter-container input {
   border: 1px solid var(--base);
-  min-width: 300px;
+  width: 300px;
 }
 
 .filter-container::before {
@@ -47,5 +47,15 @@ export default {
   width: 100px;
   background: var(--base);
   /* border: 1px solid var(--base); */
+}
+
+/* for tablet and smartphone */
+@media screen and (max-width: 768px) {
+  /* input  */
+
+  .filter-container input {
+    border: 1px solid var(--base);
+    width: 275px;
+  }
 }
 </style>
