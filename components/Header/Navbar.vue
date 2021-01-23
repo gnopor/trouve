@@ -13,6 +13,7 @@
         target="_blank"
       >
         <div class="link">
+          <mdicon v-if="link.icon" :name="link.icon" />
           <span>{{ link.title }}</span>
         </div>
       </a>
@@ -45,11 +46,15 @@ export default {
     return {
       showSideBar: false,
       links: [
-        { title: "home", path: "/", icon: "" },
-        { title: "add", path: "/add_article", icon: "" },
-        { title: "my article", path: "my_article", icon: "" },
-        { title: "contact", path: "https://tayoublaise.tk", icon: "" },
-        { title: "logout", path: "/logout", icon: "" },
+        { title: "home", path: "/", icon: "home" },
+        { title: "add", path: "/add_article", icon: "viewGridPlus" },
+        { title: "my article", path: "my_article", icon: "formatListText" },
+        {
+          title: "contact",
+          path: "https://tayoublaise.tk",
+          icon: "bookInformationVariant",
+        },
+        { title: "logout", path: "/logout", icon: "logout" },
       ],
       avatar: "",
     };
@@ -87,6 +92,12 @@ export default {
   align-items: center;
 }
 
+/* icon  */
+.menu svg {
+  margin: 0 10px;
+}
+
+/* .link  */
 .menu a {
   text-decoration: none;
   height: 100%;

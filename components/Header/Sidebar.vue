@@ -17,7 +17,7 @@
       <!-- links -->
       <div v-for="(link, index) in links" :key="index">
         <a :href="link.path">
-          {{ link.title }}
+          <mdicon v-if="link.icon" :name="link.icon" /> {{ link.title }}
         </a>
       </div>
     </div>
@@ -104,9 +104,14 @@ export default {
   text-decoration: none;
   text-transform: capitalize;
   display: flex;
+  align-items: center;
   color: white;
   cursor: pointer;
   padding: 20px 0;
+}
+
+.menu svg {
+  margin: 0 10px;
 }
 
 /* .avatar */

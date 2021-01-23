@@ -22,6 +22,7 @@ export default {
   position: relative;
   padding: 0 100px;
   border: 1px solid var(--base);
+  z-index: -4;
 }
 
 /* input  */
