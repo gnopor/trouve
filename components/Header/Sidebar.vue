@@ -102,6 +102,7 @@ export default {
 
 .menu a {
   text-decoration: none;
+  text-transform: capitalize;
   display: flex;
   color: white;
   cursor: pointer;

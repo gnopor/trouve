@@ -47,7 +47,7 @@ export default {
     return {
       showSideBar: false,
       links: [
-        { title: "home", path: "#", icon: "" },
+        { title: "home", path: "/", icon: "" },
         { title: "add", path: "/add_article", icon: "" },
         { title: "my article", path: "my_article", icon: "" },
         { title: "contact", path: "https://tayoublaise.tk", icon: "" },
@@ -91,6 +91,7 @@ export default {
 
 .menu a {
   text-decoration: none;
+  height: 100%;
 }
 
 .menu .link {
@@ -105,6 +106,7 @@ export default {
 
 .menu .link span {
   color: white;
+  text-transform: capitalize;
 }
 .menu .link:hover {
   border-bottom: 4px solid var(--accent);
