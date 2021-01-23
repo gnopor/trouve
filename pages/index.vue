@@ -1,18 +1,14 @@
 <template>
-  <div class="container">
-    home
-
-    <span v-if="$auth.loggedIn">User is authenticated</span>
+  <div class="home">
+    <ArticleFilter />
   </div>
 </template>
 
 <script >
-import Vue from "vue";
-
+import ArticleFilter from "~/components/ArticleFilter.vue";
 export default {
-  mounted() {
-    // console.log(this.$auth);
-  },
+  components: { ArticleFilter },
+  mounted() {},
 };
 </script>
 

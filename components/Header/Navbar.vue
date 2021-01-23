@@ -23,7 +23,7 @@
 
     <!-- trigger to show sidebar -->
     <span class="trigger" @click="showSideBar = true">
-      <Menu />
+      <mdicon name="menu" />
     </span>
 
     <Sidebar v-if="showSideBar" :links="links" @onHide="showSideBar = false" />
@@ -31,7 +31,6 @@
 </template>
 
 <script>
-import Menu from "mdi-vue/Menu.vue";
 import Logo from "@/components/Logo";
 import Sidebar from "@/components/Header/Sidebar";
 import Avatar from "@/components/UI/Avatar";
@@ -39,7 +38,6 @@ import Avatar from "@/components/UI/Avatar";
 export default {
   components: {
     Sidebar,
-    Menu,
     Logo,
     Avatar,
   },

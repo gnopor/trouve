@@ -109,8 +109,6 @@ export default {
 
 .form input {
   border: 1px solid var(--dark_gray);
-  padding: 5px;
-  height: 2em;
   width: 100%;
 }
 

@@ -165,12 +165,6 @@ export default {
   border-width: 20px 20px 0 0;
 }
 
-/* input  */
-input {
-  margin: 5px;
-  height: 2em;
-}
-
 /* .avatar  */
 .avatar {
   display: flex;

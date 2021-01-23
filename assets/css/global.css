@@ -16,6 +16,11 @@
   font-size: var(--default_text);
 }
 
+input {
+  padding: 5px;
+  height: 2em;
+}
+
 .grid {
   display: grid;
   grid-template-columns: repeat(12, 1fr);

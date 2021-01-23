@@ -3,11 +3,13 @@
     <div class="top">
       <Logo />
 
-      <span class="trigger" @click="hideSideNav"> <Close /> </span>
+      <span class="trigger" @click="hideSideNav">
+        <mdicon name="close" />
+      </span>
     </div>
 
     <!-- menu  -->
-    <div class="menu">
+    <div class="menu" width="42">
       <!-- avatar  -->
       <div v-if="avatar" class="avatar">
         <Avatar :url="profile_url" />
@@ -23,7 +25,6 @@
 </template>
 
 <script>
-import Close from "mdi-vue/Close.vue";
 import Logo from "@/components/Logo";
 import Avatar from "@/components/UI/Avatar";
 
@@ -35,7 +36,6 @@ export default {
     },
   },
   components: {
-    Close,
     Logo,
     Avatar,
   },
