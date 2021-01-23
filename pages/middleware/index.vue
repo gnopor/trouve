@@ -34,6 +34,7 @@ export default {
         });
     } else {
       const completed = await this.isProfileCompleted(profile);
+      debugger;
       this.$router.push("/");
 
       this.loading = false;

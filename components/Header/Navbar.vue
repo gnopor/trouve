@@ -6,7 +6,12 @@
 
     <div class="menu">
       <!-- links -->
-      <a v-for="(link, index) in links" :key="index" :href="link.path">
+      <a
+        v-for="(link, index) in links"
+        :key="index"
+        :href="link.path"
+        target="_blank"
+      >
         <div class="link">
           <span>{{ link.title }}</span>
         </div>
@@ -43,8 +48,10 @@ export default {
       showSideBar: false,
       links: [
         { title: "home", path: "#", icon: "" },
-        { title: "logout", path: "/logout", icon: "" },
+        { title: "add", path: "/add_article", icon: "" },
+        { title: "my article", path: "my_article", icon: "" },
         { title: "contact", path: "https://tayoublaise.tk", icon: "" },
+        { title: "logout", path: "/logout", icon: "" },
       ],
       avatar: "",
     };
