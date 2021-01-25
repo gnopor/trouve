@@ -15,6 +15,7 @@ export default {};
 .app {
   height: 100vh;
   width: 100vw;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 </style>

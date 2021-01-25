@@ -1,5 +1,13 @@
 export const state = () => ({
-  user: {}
+  articles: [
+    {
+      firstName: "nom test",
+      lastName: "prenom test",
+      dateAdded: "data ajout test",
+      image: "/test.png",
+      userId: 1
+    }
+  ]
 });
 
 export const getters = {};
