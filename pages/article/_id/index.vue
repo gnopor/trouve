@@ -2,7 +2,7 @@
   <div>
     some article: {{ this.$route.params.id }}
 
-    {{ article }}
+    <span v-if="articles">{{ articles }}</span>
   </div>
 </template>
 
@@ -18,7 +18,9 @@ export default {
     },
   },
   computed: {
-    ...mapState({ articles: "article/articles" }),
+    ...mapState({
+      articles: (state) => state.article.articles,
+    }),
   },
   mounted() {
     // console.log("maped state ", mapState(["article/articles"]));
