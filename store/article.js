@@ -8,7 +8,9 @@ export const state = () => ({
       image: "/test.png",
       image2: "/test.png",
       user: {
-        _id: 1
+        _id: 1,
+        number: "658758965",
+        number2: "63524521"
       }
     }
   ]
