@@ -13,7 +13,10 @@
         target="_blank"
       >
         <div class="link">
-          <mdicon v-if="link.icon" :name="link.icon" />
+          <client-only
+            ><mdicon v-if="link.icon" :name="link.icon"
+          /></client-only>
+
           <span>{{ link.title }}</span>
         </div>
       </a>
@@ -24,7 +27,9 @@
 
     <!-- trigger to show sidebar -->
     <span class="trigger" @click="showSideBar = true">
-      <mdicon name="menu" />
+      <client-only>
+        <mdicon name="menu" />
+      </client-only>
     </span>
 
     <Sidebar v-if="showSideBar" :links="links" @onHide="showSideBar = false" />

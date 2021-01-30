@@ -4,7 +4,9 @@
       <Logo />
 
       <span class="trigger" @click="hideSideNav">
-        <mdicon name="close" />
+        <client-only>
+          <mdicon name="close" />
+        </client-only>
       </span>
     </div>
 
@@ -17,7 +19,10 @@
       <!-- links -->
       <div v-for="(link, index) in links" :key="index">
         <a :href="link.path">
-          <mdicon v-if="link.icon" :name="link.icon" /> {{ link.title }}
+          <client-only>
+            <mdicon v-if="link.icon" :name="link.icon" />
+          </client-only>
+          {{ link.title }}
         </a>
       </div>
     </div>
