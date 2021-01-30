@@ -13,9 +13,9 @@
         target="_blank"
       >
         <div class="link">
-          <client-only
-            ><mdicon v-if="link.icon" :name="link.icon"
-          /></client-only>
+          <client-only>
+            <mdicon v-if="link.icon" :name="link.icon" />
+          </client-only>
 
           <span>{{ link.title }}</span>
         </div>
