@@ -10,7 +10,7 @@
         v-for="(link, index) in links"
         :key="index"
         :href="link.path"
-        target="_blank"
+        :target="link.path.includes('tayoublaise') ? '_blank' : '_self'"
       >
         <div class="link">
           <client-only>

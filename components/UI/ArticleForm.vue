@@ -15,12 +15,12 @@
       </div>
 
       <div>
-        <input type="file" accept="images/*" />
-        <Button icon="cameraPlus"> Front </Button>
+        <input type="file" accept="images/*" ref="image1" />
+        <Button icon="cameraPlus" @click="refs.image1.click()"> Front </Button>
       </div>
 
       <div>
-        <input type="file" accept="images/*" />
+        <input type="file" accept="images/*" ref="image2" />
         <Button icon="cameraPlus"> Back </Button>
       </div>
 

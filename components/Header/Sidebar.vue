@@ -18,7 +18,10 @@
       </div>
       <!-- links -->
       <div v-for="(link, index) in links" :key="index">
-        <a :href="link.path">
+        <a
+          :href="link.path"
+          :target="link.path.includes('tayoublaise') ? '_blank' : '_self'"
+        >
           <client-only>
             <mdicon v-if="link.icon" :name="link.icon" />
           </client-only>
