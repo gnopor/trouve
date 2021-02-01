@@ -15,13 +15,25 @@
       </div>
 
       <div>
-        <input type="file" accept="images/*" ref="image1" />
-        <Button icon="cameraPlus" @click="refs.image1.click()"> Front </Button>
+        <input
+          type="file"
+          accept=".png, .jpg, .jpeg"
+          ref="image1"
+          @change="newImage"
+        />
+        <Button icon="cameraPlus" @click="addFile('front')"> Front </Button>
+        <div ref="preview1"></div>
       </div>
 
       <div>
-        <input type="file" accept="images/*" ref="image2" />
-        <Button icon="cameraPlus"> Back </Button>
+        <input
+          type="file"
+          accept=".png, .jpg, .jpeg"
+          ref="image2"
+          @change="newImage"
+        />
+        <Button icon="cameraPlus" @click="addFile('back')"> Back </Button>
+        <div ref="preview2"></div>
       </div>
 
       <div class="actions">
@@ -34,8 +46,10 @@
 </template>
 
 <script>
+import mixin from "@/static/mixins/default";
 import Button from "@/components/UI/Button";
 export default {
+  mixins: [mixin],
   props: {
     article: {
       type: Object,
@@ -44,7 +58,50 @@ export default {
   components: { Button },
   data: () => ({
     current: {},
+    imageSelector: "",
   }),
+  methods: {
+    addFile(target) {
+      // console.log(arguments[0]);
+      if (target == "front") {
+        this.$refs.image1.click();
+        this.imageSelector = "image1";
+      } else {
+        this.$refs.image2.click();
+        this.imageSelector = "image2";
+      }
+    },
+    newImage(event) {
+      let image;
+      let preview;
+      let title;
+      if (this.imageSelector == "image1") {
+        image = this.current.image;
+        preview = this.$refs.preview1;
+        title = "Front image";
+      } else {
+        image = this.current.image2;
+        preview = this.$refs.preview2;
+        title = "Back image";
+      }
+
+      image = event.target.files[0];
+      debugger;
+
+      const img = document.createElement("img");
+      img.title = title;
+      img.height = "100";
+
+      const reader = new FileReader();
+      reader.readAsDataURL(image);
+      reader.onload = (event) => {
+        img.src = event.target.result;
+
+        if (preview.firstChild) preview.firstChild.remove();
+        preview.appendChild(img);
+      };
+    },
+  },
 };
 </script>
 

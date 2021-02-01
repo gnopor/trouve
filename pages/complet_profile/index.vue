@@ -17,7 +17,7 @@
       <div class="avatar">
         <input
           type="file"
-          accept="images/*"
+          accept=".png, .jpg, .jpeg"
           ref="file_input"
           @change="newImage"
         />
