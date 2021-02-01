@@ -1,7 +1,11 @@
 <template>
   <div>
     <button v-bind="$attrs" :class="style" v-on="listeners">
-      <slot></slot>
+      <span class="button-text">
+        <client-only v-if="icon"> <mdicon :name="icon" /> &nbsp; </client-only>
+
+        <slot></slot>
+      </span>
     </button>
   </div>
 </template>
@@ -17,6 +21,9 @@ export default {
     secondary: {
       type: Boolean,
       default: false,
+    },
+    icon: {
+      type: String,
     },
   },
   computed: {
@@ -52,7 +59,13 @@ button {
   border-radius: 0;
   padding: 10px;
   cursor: pointer;
-  width: 100px;
+  width: 108px;
+}
+
+button span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .primary {

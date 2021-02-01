@@ -23,10 +23,7 @@ export default {
   },
 
   css: ["@/assets/css/global.css"],
-  plugins: [
-    "@/plugins/helpers.js",
-    { src: "@/plugins/mdi-vue.js", mode: "client" }
-  ],
+  plugins: ["@/plugins/helpers.js", "@/plugins/mdi-vue.client.js"],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
   components: true,

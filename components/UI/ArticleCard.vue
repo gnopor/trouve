@@ -19,7 +19,10 @@
 
       <!-- current user  -->
       <span v-if="article.userId == 1" class="current_user">
-        Yours <mdicon name="check" />
+        Yours
+        <client-only>
+          <mdicon name="check" />
+        </client-only>
       </span>
     </div>
   </div>
