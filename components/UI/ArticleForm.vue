@@ -38,7 +38,7 @@
 
       <div class="actions">
         <Button secondary icon="cancel" @click="current = {}"> Cancel </Button>
-        <Button v-if="!article" primary icon="plus"> Add </Button>
+        <Button v-if="!article" primary icon="plus" @click="send"> Add </Button>
         <Button v-else primary icon="update"> Update </Button>
       </div>
     </div>
@@ -46,6 +46,7 @@
 </template>
 
 <script>
+import { v4 as uuidv4 } from "uuid";
 import mixin from "@/static/mixins/default";
 import Button from "@/components/UI/Button";
 export default {
@@ -72,21 +73,18 @@ export default {
       }
     },
     newImage(event) {
-      let image;
+      const image = event.target.files[0];
       let preview;
       let title;
       if (this.imageSelector == "image1") {
-        image = this.current.image;
+        this.current.image = image;
         preview = this.$refs.preview1;
         title = "Front image";
       } else {
-        image = this.current.image2;
+        this.current.image2 = image;
         preview = this.$refs.preview2;
         title = "Back image";
       }
-
-      image = event.target.files[0];
-      debugger;
 
       const img = document.createElement("img");
       img.title = title;
@@ -100,6 +98,21 @@ export default {
         if (preview.firstChild) preview.firstChild.remove();
         preview.appendChild(img);
       };
+    },
+    send() {
+      if (!this.isFormValid())
+        return (this.message = "Remplissez tout les champs");
+
+      this.current._id = uuidv4();
+      this.$emit("add", this.current);
+    },
+    isFormValid() {
+      return (
+        this.current.firstName &&
+        this.current.lastName &&
+        this.current.image &&
+        this.current.image2
+      );
     },
   },
 };
