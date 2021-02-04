@@ -44,8 +44,6 @@ export default {
           this.loading = false;
           this.error = "Problem lors de l'ajout";
         });
-
-      await console.log("my article state", this.$store.state);
     },
   },
 };

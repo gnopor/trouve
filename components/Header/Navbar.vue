@@ -1,7 +1,9 @@
 <template>
   <div class="navbar">
     <div class="logo">
-      <Logo />
+      <nuxt-link to="/">
+        <Logo />
+      </nuxt-link>
     </div>
 
     <div class="menu">
@@ -88,6 +90,11 @@ export default {
   max-width: 100vw;
   height: 60px;
   padding: 0 50px 0 10px;
+}
+
+/* logo  */
+.logo a {
+  text-decoration: none;
 }
 
 /* menu */
