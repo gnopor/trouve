@@ -19,16 +19,19 @@ export const state = () => ({
 export const getters = {};
 
 export const mutations = {
-  setConnected(state, status) {
-    state.connected = status;
+  addArticle(state, article) {
+    state.articles = [...state.articles, article];
   }
 };
 
 export const actions = {
-  getArticle({ dispatch, state }, id) {
+  getArticle({ state }, id) {
     return new Promise((resolve, reject) => {
       const article = state.articles.find(article => article._id == id);
       article ? resolve(article) : reject(`There is not article of id ${id}`);
     });
+  },
+  addArticle({ commit }, article) {
+    commit("addArticle", article);
   }
 };
