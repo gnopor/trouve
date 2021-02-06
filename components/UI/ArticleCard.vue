@@ -2,7 +2,7 @@
   <div class="card-container">
     <!-- image-container -->
     <div class="image-container">
-      <img :src="article.image" alt="image1" />
+      <img :src="imageUrl" alt="image1" />
     </div>
 
     <!-- info-container  -->
@@ -14,11 +14,11 @@
         <span>Prenom: </span> <span>{{ article.lastName }}</span>
       </div>
       <div>
-        <span>Date ajout: </span><span>{{ article.dateAdded }}</span>
+        <span>Date ajout: </span><span>{{ article.dateAdd }}</span>
       </div>
 
       <!-- current user  -->
-      <span v-if="article.userId == 1" class="current_user">
+      <span v-if="article.user._id == currentUserId" class="current_user">
         Yours
         <client-only>
           <mdicon name="check" />
@@ -33,6 +33,19 @@ export default {
   props: {
     article: {
       type: Object,
+    },
+  },
+  data: () => ({
+    currentUserId: "",
+  }),
+  mounted() {
+    const PROFILE_NAME = "app_profile";
+    let { _id } = this.$__getCookie(this, PROFILE_NAME);
+    this.currentUserId = _id;
+  },
+  computed: {
+    imageUrl() {
+      return `${process.env.baseUrl}/${process.env.backen_app}/static/${this.article.image}`;
     },
   },
 };
@@ -74,8 +87,9 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin: 0 0 0 5px;
   height: 100%;
-  width: 200px;
+  width: 195px;
 }
 
 .info-container div {

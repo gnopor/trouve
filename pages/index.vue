@@ -3,8 +3,12 @@
     <ArticleFilter />
 
     <!-- .cardList -->
-    <div class="cardList">
-      <ArticleCard v-for="i in 20" :key="i" :article="article" />
+    <div class="cardList" v-if="articles.length">
+      <ArticleCard
+        v-for="(article, i) in articles"
+        :key="i"
+        :article="article"
+      />
     </div>
   </div>
 </template>
@@ -17,19 +21,11 @@ import ArticleCard from "~/components/UI/ArticleCard.vue";
 export default {
   components: { ArticleFilter, ArticleCard },
   mixins: [mixin],
-  data: () => ({
-    article: {
-      firstName: "nom test",
-      lastName: "prenom test",
-      dateAdded: "data ajout test",
-      image: "/test.png",
-      userId: 1,
-    },
-  }),
-  mounted() {
+  data: () => ({}),
+  async mounted() {
     this.loading = true;
     if (!(this.articles.length > 0)) {
-      this.$axios
+      await this.$axios
         .get("/getArticles")
         .then((res) => {
           this.setArticles(res.data);
