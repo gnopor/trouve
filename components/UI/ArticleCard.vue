@@ -1,5 +1,5 @@
 <template>
-  <div class="card-container">
+  <div class="card-container" @click="$emit('click')">
     <!-- image-container -->
     <div class="image-container">
       <img :src="imageUrl" alt="image1" />
@@ -14,7 +14,7 @@
         <span>Prenom: </span> <span>{{ article.lastName }}</span>
       </div>
       <div>
-        <span>Date ajout: </span><span>{{ article.dateAdd }}</span>
+        <span>Date ajout: </span><span>{{ formatedDate }}</span>
       </div>
 
       <!-- current user  -->
@@ -47,6 +47,9 @@ export default {
     imageUrl() {
       return `${process.env.baseUrl}/${process.env.backen_app}/static/${this.article.image}`;
     },
+    formatedDate() {
+      return this.$__formatDate(this.article.dateAdd);
+    },
   },
 };
 </script>
@@ -67,6 +70,7 @@ export default {
   justify-content: center;
   align-items: center;
   overflow: hidden;
+  height: 100%;
   width: 200px;
 }
 
@@ -114,6 +118,6 @@ export default {
   font-size: 0.75em;
   font-weight: bold;
   border-radius: 20px 0 10px 0;
-  padding: 2px 5px;
+  padding: 1px 5px;
 }
 </style>

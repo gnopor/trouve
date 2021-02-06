@@ -15,3 +15,23 @@ Vue.prototype.$__setCookie = (self, key, value) => {
 // Vue.prototype.$__setValue = (key, value) => {
 //   return this.$auth.$storage.setUniversal(key, value);
 // };
+
+Vue.prototype.$__formatDate = date_string => {
+  const months = [
+    "Jan.",
+    "Fev.",
+    "Mars",
+    "Avr.",
+    "Mai",
+    "Juin",
+    "Juill.",
+    "Août",
+    "Sept.",
+    "Oct.",
+    "Nov.",
+    "Dec."
+  ];
+
+  const date = new Date(date_string);
+  return `${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`;
+};

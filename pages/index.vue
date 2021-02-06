@@ -8,6 +8,7 @@
         v-for="(article, i) in articles"
         :key="i"
         :article="article"
+        @click="$router.push(`/article/${article._id}`)"
       />
     </div>
   </div>

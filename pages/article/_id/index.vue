@@ -1,7 +1,7 @@
 <template>
   <div class="article-view-container grid">
     <!-- current-user-article -->
-    <div class="current-user-artcle">
+    <div v-if="isCurrentUser" class="current-user-artcle">
       Yours
       <client-only>
         <mdicon name="check" />
@@ -10,8 +10,8 @@
 
     <!-- images -->
     <div class="images">
-      <img :src="article.image" alt="image1" />
-      <img :src="article.image2" alt="image2" />
+      <img :src="imageUrl(article.image)" alt="image1" />
+      <img :src="imageUrl(article.image2)" alt="image2" />
     </div>
 
     <!-- infos container-->
@@ -24,7 +24,7 @@
           <span>Prenom: </span> <span>{{ article.lastName }}</span>
         </div>
         <div>
-          <span>Date d'ajout: </span> <span>{{ article.dateAdded }}</span>
+          <span>Date d'ajout: </span> <span>{{ formatedDate }}</span>
         </div>
       </div>
 
@@ -34,7 +34,7 @@
         <span>{{ article.user.number2 }}</span>
       </div>
 
-      <div class="actions">
+      <div v-if="isCurrentUser" class="actions">
         <Button secondary>Delete</Button>
         <Button primary>Update</Button>
       </div>
@@ -49,10 +49,17 @@ export default {
   components: { Button },
   data: () => ({
     article: {},
+    currentUserId: "",
   }),
 
-  mounted() {
-    this.getArticle(this.$route.params.id)
+  async mounted() {
+    // get user profile
+    const PROFILE_NAME = "app_profile";
+    let { _id } = this.$__getCookie(this, PROFILE_NAME);
+    this.currentUserId = _id;
+
+    // get article
+    await this.getArticle(this.$route.params.id)
       .then((res) => {
         this.article = res;
       })
@@ -62,6 +69,21 @@ export default {
   },
   methods: {
     ...mapActions("article", ["getArticle"]),
+    imageUrl(image) {
+      return `${process.env.baseUrl}/${process.env.backen_app}/static/${image}`;
+    },
+  },
+  computed: {
+    formatedDate() {
+      return this.$__formatDate(this.article.dateAdd);
+    },
+    isCurrentUser() {
+      return (
+        this.currentUserId &&
+        this.article.user &&
+        this.currentUserId == this.article.user._id
+      );
+    },
   },
 };
 </script>
@@ -98,6 +120,7 @@ export default {
 }
 
 .images img {
+  margin: 5px 0;
   height: 300px;
 }
 
