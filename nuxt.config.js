@@ -1,4 +1,9 @@
-let BASE_URL = "http://localhost:8000";
+let { BASE_URL } = process.env;
+
+if (!BASE_URL) {
+  BASE_URL = "http://localhost:8000";
+}
+
 let BACKEND_APP = "trouve";
 
 const axiosBaseUrl = `${BASE_URL}/${BACKEND_APP}`;

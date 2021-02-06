@@ -3,7 +3,7 @@
     <div class="top">
       <Logo />
 
-      <span class="trigger" @click="hideSideNav">
+      <span class="trigger" @click="hideSidebar">
         <client-only>
           <mdicon name="close" />
         </client-only>
@@ -11,22 +11,31 @@
     </div>
 
     <!-- menu  -->
-    <div class="menu" width="42">
+    <div class="menu" width="42" @click="hideSidebar">
       <!-- avatar  -->
       <div v-if="avatar" class="avatar">
         <Avatar :url="profile_url" />
       </div>
+
       <!-- links -->
       <div v-for="(link, index) in links" :key="index">
         <a
+          v-if="link.path.includes('tayoublaise')"
           :href="link.path"
-          :target="link.path.includes('tayoublaise') ? '_blank' : '_self'"
+          target="_blank"
         >
           <client-only>
             <mdicon v-if="link.icon" :name="link.icon" />
           </client-only>
           {{ link.title }}
         </a>
+
+        <nuxt-link v-else :to="link.path">
+          <client-only>
+            <mdicon v-if="link.icon" :name="link.icon" />
+          </client-only>
+          {{ link.title }}
+        </nuxt-link>
       </div>
     </div>
   </div>
@@ -58,7 +67,7 @@ export default {
     if (profile && profile.avatar) this.avatar = profile.avatar;
   },
   methods: {
-    hideSideNav() {
+    hideSidebar() {
       this.$emit("onHide", true);
     },
   },
@@ -114,6 +123,7 @@ export default {
   display: flex;
   align-items: center;
   color: white;
+  font-weight: bold;
   cursor: pointer;
   padding: 20px 0;
 }

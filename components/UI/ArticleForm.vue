@@ -105,6 +105,8 @@ export default {
 
       this.current._id = uuidv4();
       this.$emit("add", this.current);
+      this.$refs.preview1.firstChild.remove();
+      this.$refs.preview2.firstChild.remove();
       this.current = {};
     },
     isFormValid() {

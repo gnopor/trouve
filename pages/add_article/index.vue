@@ -31,7 +31,7 @@ export default {
         .post("/addArticle", formData)
         .then((res) => {
           const data = res.data;
-          delete data.userId;
+          // delete data.userId;
           const { _id, number, number2 } = this.profile;
           const user = { _id, number, number2 };
           const article = { ...data, user };

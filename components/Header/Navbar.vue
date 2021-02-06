@@ -8,20 +8,26 @@
 
     <div class="menu">
       <!-- links -->
-      <a
-        v-for="(link, index) in links"
-        :key="index"
-        :href="link.path"
-        :target="link.path.includes('tayoublaise') ? '_blank' : '_self'"
-      >
-        <div class="link">
+      <div v-for="(link, index) in links" :key="index" class="link">
+        <a
+          v-if="link.path.includes('tayoublaise')"
+          :href="link.path"
+          target="_blank"
+        >
           <client-only>
             <mdicon v-if="link.icon" :name="link.icon" />
           </client-only>
 
           <span>{{ link.title }}</span>
-        </div>
-      </a>
+        </a>
+        <nuxt-link v-else :to="link.path">
+          <client-only>
+            <mdicon v-if="link.icon" :name="link.icon" />
+          </client-only>
+
+          <span>{{ link.title }}</span>
+        </nuxt-link>
+      </div>
 
       <!-- avatar  -->
       <Avatar v-if="avatar" class="avatar" :url="profile_url" />
@@ -112,6 +118,8 @@ export default {
 /* .link  */
 .menu a {
   text-decoration: none;
+  display: flex;
+  align-items: center;
   height: 100%;
 }
 
