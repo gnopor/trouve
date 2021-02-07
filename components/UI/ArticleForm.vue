@@ -232,4 +232,30 @@ export default {
   display: flex;
   justify-content: space-evenly;
 }
+
+/* for tablet and smartphone */
+@media screen and (max-width: 768px) {
+  /* .title */
+  .title {
+    margin: 25px 0 70px 25px;
+  }
+  .title span {
+    font-size: 3em;
+  }
+
+  /* .form  */
+  .form {
+    /* align-self: flex-start; */
+    width: 250px;
+    max-width: 100vw;
+  }
+
+  .form::after {
+    height: 40px;
+    width: 40px;
+    border: 1px solid var(--base);
+    border-width: 30px 30px 0 0;
+    transform: translate(70px, -60px);
+  }
+}
 </style>
