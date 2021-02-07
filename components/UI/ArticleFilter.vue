@@ -1,6 +1,6 @@
 <template>
   <div class="filter-container">
-    <input v-model="filter" type="text" placeholder="Search..." autofocus />
+    <input v-model="filter" type="text" placeholder="Search..." />
   </div>
 </template>
 
@@ -11,9 +11,10 @@ export default {
     filter: "",
   }),
   watch: {
-    filter() {},
+    filter() {
+      this.$emit("change", this.filter);
+    },
   },
-  mounted() {},
 };
 </script>
 
@@ -22,7 +23,7 @@ export default {
   position: relative;
   padding: 0 100px;
   border: 1px solid var(--base);
-  z-index: -4;
+  /* z-index: -4; */
 }
 
 /* input  */

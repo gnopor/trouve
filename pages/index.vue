@@ -1,11 +1,11 @@
 <template>
   <div class="home">
-    <ArticleFilter />
+    <ArticleFilter @change="applyFilter" />
 
     <!-- .cardList -->
     <div class="cardList" v-if="articles.length">
       <ArticleCard
-        v-for="(article, i) in articles"
+        v-for="(article, i) in allArticles"
         :key="i"
         :article="article"
         @click="$router.push(`/article/${article._id}`)"
@@ -22,14 +22,18 @@ import ArticleCard from "~/components/UI/ArticleCard.vue";
 export default {
   components: { ArticleFilter, ArticleCard },
   mixins: [mixin],
-  data: () => ({}),
+  data: () => ({
+    allArticles: [],
+  }),
   async mounted() {
     this.loading = true;
+
     if (!(this.articles.length > 0)) {
       await this.$axios
         .get("/getArticles")
         .then((res) => {
           this.setArticles(res.data);
+          this.allArticles = res.data;
           this.loading = false;
         })
         .catch((err) => {
@@ -38,10 +42,19 @@ export default {
           this.error = err;
         });
     }
+    this.allArticles = this.articles;
     this.loading = false;
   },
   methods: {
     ...mapActions("article", ["setArticles"]),
+    applyFilter(string) {
+      this.allArticles = this.articles.filter((article) => {
+        return (
+          article.firstName.includes(string) ||
+          article.lastName.includes(string)
+        );
+      });
+    },
   },
   computed: {
     ...mapState("article", ["articles"]),
