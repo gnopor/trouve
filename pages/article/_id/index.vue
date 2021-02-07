@@ -35,7 +35,7 @@
       </div>
 
       <div v-if="isCurrentUser" class="actions">
-        <Button secondary>Delete</Button>
+        <Button secondary @click="deleteArticle">Delete</Button>
         <Button primary @click="updateArticle">Update</Button>
       </div>
     </div>
@@ -68,12 +68,28 @@ export default {
       });
   },
   methods: {
-    ...mapActions("article", ["getArticle"]),
+    ...mapActions("article", ["getArticle", "removeArticle"]),
     imageUrl(image) {
       return `${process.env.baseUrl}/${process.env.backen_app}/static/${image}`;
     },
     updateArticle() {
       this.$router.push(`/update_article/${this.article._id}`);
+    },
+    async deleteArticle() {
+      this.loading = true;
+      await this.$axios
+        .post("/deleteArticle", { _id: this.article._id })
+        .then((res) => {
+          this.removeArticle(res.data._id);
+          this.loading = false;
+          this.message = "Article deleted";
+          this.$router.push("/");
+        })
+        .catch((err) => {
+          this.error = err;
+          this.loading = false;
+        });
+      this.loading = false;
     },
   },
   computed: {

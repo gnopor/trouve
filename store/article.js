@@ -14,6 +14,9 @@ export const mutations = {
   updateArticle(state, article) {
     const index = state.articles.findIndex(entrie => entrie._id == article._id);
     state.articles[index] = article;
+  },
+  removeArticle(state, _id) {
+    state.articles = state.articles.filter(article => article._id != _id);
   }
 };
 
@@ -32,5 +35,8 @@ export const actions = {
   },
   updateArticle({ commit }, article) {
     commit("updateArticle", article);
+  },
+  removeArticle({ commit }, _id) {
+    commit("removeArticle", _id);
   }
 };
