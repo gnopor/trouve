@@ -36,7 +36,7 @@
 
       <div v-if="isCurrentUser" class="actions">
         <Button secondary>Delete</Button>
-        <Button primary>Update</Button>
+        <Button primary @click="updateArticle">Update</Button>
       </div>
     </div>
   </div>
@@ -71,6 +71,9 @@ export default {
     ...mapActions("article", ["getArticle"]),
     imageUrl(image) {
       return `${process.env.baseUrl}/${process.env.backen_app}/static/${image}`;
+    },
+    updateArticle() {
+      this.$router.push(`/update_article/${this.article._id}`);
     },
   },
   computed: {

@@ -58,6 +58,12 @@ export default {
       this.message = "";
     },
     handleError() {
+      if (
+        this.error &&
+        this.error.response &&
+        this.error.response.status == 401
+      )
+        return this.$router.push("/logout");
       alert(`[Erreur] ${this.error}`);
       this.error = "";
     }

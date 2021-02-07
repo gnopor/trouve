@@ -22,7 +22,14 @@
           @change="newImage"
         />
         <Button icon="cameraPlus" @click="addFile('front')"> Front </Button>
-        <div ref="preview1"></div>
+        <div ref="preview1">
+          <img
+            v-if="this.article"
+            :src="imageUrl(this.current.image)"
+            height="100"
+            alt="image1"
+          />
+        </div>
       </div>
 
       <div>
@@ -33,13 +40,20 @@
           @change="newImage"
         />
         <Button icon="cameraPlus" @click="addFile('back')"> Back </Button>
-        <div ref="preview2"></div>
+        <div ref="preview2">
+          <img
+            v-if="this.article"
+            :src="imageUrl(this.current.image2)"
+            height="100"
+            alt="image2"
+          />
+        </div>
       </div>
 
       <div class="actions">
         <Button secondary icon="cancel" @click="current = {}"> Cancel </Button>
         <Button v-if="!article" primary icon="plus" @click="send"> Add </Button>
-        <Button v-else primary icon="update"> Update </Button>
+        <Button v-else primary icon="update" @click="update"> Update </Button>
       </div>
     </div>
   </div>
@@ -61,6 +75,12 @@ export default {
     current: {},
     imageSelector: "",
   }),
+  mounted() {
+    if (this.article) {
+      // const { _id, firstName, lastName } = this.article;
+      this.current = { ...this.article };
+    }
+  },
   methods: {
     addFile(target) {
       // console.log(arguments[0]);
@@ -109,12 +129,30 @@ export default {
       this.$refs.preview2.firstChild.remove();
       this.current = {};
     },
+    update() {
+      if (!this.isFormValid())
+        return (this.message = "Remplissez tout les champs");
+
+      if (!(typeof this.current.image == typeof this.current.image2))
+        return (this.message = "Vous devez modifier les 2 images");
+
+      this.$emit("update", this.current);
+      this.$refs.preview1.firstChild.remove();
+      this.$refs.preview2.firstChild.remove();
+      this.current = {};
+    },
     isFormValid() {
       return (
         this.current.firstName &&
         this.current.lastName &&
         this.current.image &&
         this.current.image2
+      );
+    },
+    imageUrl(image) {
+      return (
+        image &&
+        `${process.env.baseUrl}/${process.env.backen_app}/static/${image}`
       );
     },
   },
@@ -127,6 +165,7 @@ export default {
   flex-direction: column;
   align-items: center;
   min-height: calc(100vh - 10vh);
+  padding: 30px 0;
 }
 
 /* .title */

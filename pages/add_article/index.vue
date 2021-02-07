@@ -38,6 +38,7 @@ export default {
           this.addArticle(article);
           this.loading = false;
           this.message = "Operation reussie";
+          this.$router.push("/");
         })
         .catch((err) => {
           console.log(err);

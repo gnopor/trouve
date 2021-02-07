@@ -10,6 +10,10 @@ export const mutations = {
   },
   addArticle(state, article) {
     state.articles = [...state.articles, article];
+  },
+  updateArticle(state, article) {
+    const index = state.articles.findIndex(entrie => entrie._id == article._id);
+    state.articles[index] = article;
   }
 };
 
@@ -25,5 +29,8 @@ export const actions = {
   },
   addArticle({ commit }, article) {
     commit("addArticle", article);
+  },
+  updateArticle({ commit }, article) {
+    commit("updateArticle", article);
   }
 };

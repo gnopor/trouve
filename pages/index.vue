@@ -42,6 +42,7 @@ export default {
           this.error = err;
         });
     }
+    // console.log(this.articles);
     this.allArticles = this.articles;
     this.loading = false;
   },
