@@ -1,12 +1,12 @@
-const staticCacheName = "site-static-v1";
+const staticCacheName = "site-static-v2";
 const dynamicCacheName = "site-dynamic-v1";
 const assets = [
-  "/",
-  "/_nuxt/pages/index.js",
-  "/_nuxt/app.js",
-  "/_nuxt/commons/app.js",
-  "/_nuxt/runtime.js",
-  "/_nuxt/vendors/app.js"
+  "/"
+  // "/_nuxt/pages/index.js",
+  // "/_nuxt/app.js",
+  // "/_nuxt/commons/app.js",
+  // "/_nuxt/runtime.js",
+  // "/_nuxt/vendors/app.js"
 ];
 
 // cache size limits function
