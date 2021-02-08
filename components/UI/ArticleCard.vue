@@ -120,4 +120,40 @@ export default {
   border-radius: 20px 0 10px 0;
   padding: 1px 5px;
 }
+
+/* for tablet and smartphone */
+@media screen and (max-width: 768px) {
+  .card-container {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+  }
+
+  /* .image-container */
+  .image-container {
+    width: inherit;
+  }
+
+  .image-container img {
+    width: inherit;
+  }
+
+  /* .info-container */
+  .info-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 0 0 5px;
+    width: inherit;
+  }
+
+  /* .current_user  */
+  .info-container .current_user {
+    bottom: 0px;
+    right: 4px;
+    border-radius: 20px 0 10px 0;
+    padding: 1px 5px;
+  }
+}
 </style>
