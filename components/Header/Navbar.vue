@@ -61,7 +61,7 @@ export default {
       links: [
         { title: "home", path: "/", icon: "home" },
         { title: "add", path: "/add_article", icon: "viewGridPlus" },
-        { title: "my article", path: "my_article", icon: "formatListText" },
+        { title: "my articles", path: "/my_articles", icon: "formatListText" },
         {
           title: "contact",
           path: "https://tayoublaise.tk",

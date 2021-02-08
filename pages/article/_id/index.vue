@@ -61,6 +61,7 @@ export default {
     // get article
     await this.getArticle(this.$route.params.id)
       .then((res) => {
+        if (!res._id) return this.$router.push("/");
         this.article = res;
       })
       .catch((err) => {
