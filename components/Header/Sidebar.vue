@@ -13,7 +13,7 @@
     <!-- menu  -->
     <div class="menu" width="42" @click="hideSidebar">
       <!-- avatar  -->
-      <div v-if="avatar" class="avatar">
+      <div v-if="avatar && $auth.loggedIn" class="avatar">
         <Avatar :url="profile_url" />
       </div>
 
@@ -35,6 +35,25 @@
             <mdicon v-if="link.icon" :name="link.icon" />
           </client-only>
           {{ link.title }}
+        </nuxt-link>
+      </div>
+
+      <!-- auth link -->
+      <div class="link">
+        <nuxt-link v-if="$auth.loggedIn" to="/logout">
+          <client-only>
+            <mdicon name="logout" />
+          </client-only>
+
+          <span>Logout</span>
+        </nuxt-link>
+
+        <nuxt-link v-else to="/login">
+          <client-only>
+            <mdicon name="login" />
+          </client-only>
+
+          <span>Login</span>
         </nuxt-link>
       </div>
     </div>

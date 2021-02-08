@@ -20,6 +20,7 @@
 
           <span>{{ link.title }}</span>
         </a>
+
         <nuxt-link v-else :to="link.path">
           <client-only>
             <mdicon v-if="link.icon" :name="link.icon" />
@@ -29,8 +30,31 @@
         </nuxt-link>
       </div>
 
+      <!-- auth link -->
+      <div class="link">
+        <nuxt-link v-if="$auth.loggedIn" to="/logout">
+          <client-only>
+            <mdicon name="logout" />
+          </client-only>
+
+          <span>Logout</span>
+        </nuxt-link>
+
+        <nuxt-link v-else to="/login">
+          <client-only>
+            <mdicon name="login" />
+          </client-only>
+
+          <span>Login</span>
+        </nuxt-link>
+      </div>
+
       <!-- avatar  -->
-      <Avatar v-if="avatar" class="avatar" :url="profile_url" />
+      <Avatar
+        v-if="avatar && $auth.loggedIn"
+        class="avatar"
+        :url="profile_url"
+      />
     </div>
 
     <!-- trigger to show sidebar -->
@@ -67,7 +91,6 @@ export default {
           path: "https://tayoublaise.tk",
           icon: "bookInformationVariant",
         },
-        { title: "logout", path: "/logout", icon: "logout" },
       ],
       avatar: "",
     };
