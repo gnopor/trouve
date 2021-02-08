@@ -225,5 +225,11 @@ export default {
   .infos span:nth-child(2) {
     font-size: 1em;
   }
+
+  .numbers span:nth-child(1) {
+    font-size: 1.5em;
+    color: var(--accent);
+    padding: 10px 0px;
+  }
 }
 </style>
