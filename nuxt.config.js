@@ -22,9 +22,15 @@ export default {
         hid: "description",
         name: "description",
         content: "Blaise TAYOU Trouve"
-      }
+      },
+      { name: "theme-color", content: "#ffc72f" },
+      { name: "apple-mobile-web-app-status-ba", content: "#ffc72f" }
     ],
-    link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }]
+    link: [
+      { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
+      { rel: "manifest", href: "/manifest.json" },
+      { rel: "apple-touch-icon", href: "/img/icons/icon-96x96.png" }
+    ]
   },
 
   css: ["@/assets/css/global.css"],
