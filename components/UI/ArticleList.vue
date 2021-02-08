@@ -88,7 +88,8 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 10px auto;
+  margin: auto;
+  padding: 50px 0;
   max-width: 300px;
   height: 100vh;
 }
