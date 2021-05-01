@@ -88,7 +88,7 @@ export default {
         { title: "my articles", path: "/my_articles", icon: "formatListText" },
         {
           title: "contact",
-          path: "https://tayoublaise.tk",
+          path: "https://wwww.tayoublaise.tk",
           icon: "bookInformationVariant",
         },
       ],

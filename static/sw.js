@@ -1,12 +1,20 @@
 const staticCacheName = "site-static-v2";
 const dynamicCacheName = "site-dynamic-v1";
 const assets = [
-  "/"
+  "/",
   // "/_nuxt/pages/index.js",
   // "/_nuxt/app.js",
   // "/_nuxt/commons/app.js",
   // "/_nuxt/runtime.js",
   // "/_nuxt/vendors/app.js"
+  "/img/icons/icon-72x72.png",
+  "/img/icons/icon-96x96.png",
+  "/img/icons/icon-128x128.png",
+  "/img/icons/icon-144x144.png",
+  "/img/icons/icon-152x152.png",
+  "/img/icons/icon-192x192.png",
+  "/img/icons/icon-384x384.png",
+  "/img/icons/icon-512x512.png"
 ];
 
 // cache size limits function
